@@ -53,6 +53,15 @@ Priority: optional
 Description: Radxa U-Boot meta-package for ROCK 3B products
  This package provides the prebuilt U-Boot for ROCK 3B products.
 
+Package: u-boot-rock-3c
+Architecture: all
+Depends: u-boot-rk2601,
+         ${misc:Depends},
+Section: admin
+Priority: optional
+Description: Radxa U-Boot meta-package for ROCK 3C products
+ This package provides the prebuilt U-Boot for ROCK 3C products.
+
 Package: u-boot-radxa-rk3576
 Architecture: all
 Depends: u-boot-rk2601,

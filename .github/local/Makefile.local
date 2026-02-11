@@ -50,6 +50,25 @@ rock-3b: rock-3b_build
 	cp setup/u-boot_setup-rockchip.sh out/$@/setup.sh
 	cp setup/u-boot_setup-rockchip.ps1 out/$@/setup.ps1
 
+.PHONY: rock-3c_defconfig
+rock-3c_defconfig: clean_config
+	$(UMAKE) rock-3c-rk3566_defconfig
+
+.PHONY: rock-3c_build
+rock-3c_build: rock-3c_defconfig
+	$(UMAKE) all u-boot.itb
+	sed -i "s|FlashBoot=.*|FlashBoot=../src/spl/u-boot-spl.bin|g" "rkbin/RKBOOT/RK3566MINIALL.ini"
+	cd rkbin && tools/boot_merger "RKBOOT/RK3566MINIALL.ini"
+
+.PHONY: rock-3c
+rock-3c: rock-3c_build
+	mkdir -p out/$@
+	mv rkbin/*_loader_*.bin "out/$@/rkboot.bin"
+	mv rkbin/*idblock*.img "out/$@/idbloader.img"
+	mv src/u-boot.itb "out/$@/"
+	cp setup/u-boot_setup-rockchip.sh out/$@/setup.sh
+	cp setup/u-boot_setup-rockchip.ps1 out/$@/setup.ps1
+
 .PHONY: radxa-rk3576_defconfig
 radxa-rk3576_defconfig: clean_config
 	$(UMAKE) rock-4d-rk3576_defconfig
