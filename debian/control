@@ -88,3 +88,12 @@ Section: admin
 Priority: optional
 Description: Radxa U-Boot meta-package for ROCK 5B+ products
  This package provides the prebuilt U-Boot for ROCK 5B+ products.
+
+Package: u-boot-rock-5c
+Architecture: all
+Depends: u-boot-rk2601,
+         ${misc:Depends},
+Section: admin
+Priority: optional
+Description: Radxa U-Boot meta-package for ROCK 5C products
+ This package provides the prebuilt U-Boot for ROCK 5C products.

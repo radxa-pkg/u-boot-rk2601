@@ -125,3 +125,22 @@ rock-5b-plus: rock-5b-plus_build
 	mv src/u-boot.itb "out/$@/"
 	cp setup/u-boot_setup-rockchip.sh out/$@/setup.sh
 	cp setup/u-boot_setup-rockchip.ps1 out/$@/setup.ps1
+
+.PHONY: rock-5c_defconfig
+rock-5c_defconfig: clean_config
+	$(UMAKE) rock-5c-rk3588s_defconfig
+
+.PHONY: rock-5c_build
+rock-5c_build: rock-5c_defconfig
+	$(UMAKE) all u-boot.itb
+	sed -i "s|FlashBoot=.*|FlashBoot=../src/spl/u-boot-spl.bin|g" "rkbin/RKBOOT/RK3588MINIALL.ini"
+	cd rkbin && tools/boot_merger "RKBOOT/RK3588MINIALL.ini"
+
+.PHONY: rock-5c
+rock-5c: rock-5c_build
+	mkdir -p out/$@
+	mv rkbin/*_loader_*.bin "out/$@/rkboot.bin"
+	mv rkbin/*idblock*.img "out/$@/idbloader.img"
+	mv src/u-boot.itb "out/$@/"
+	cp setup/u-boot_setup-rockchip.sh out/$@/setup.sh
+	cp setup/u-boot_setup-rockchip.ps1 out/$@/setup.ps1
