@@ -70,3 +70,12 @@ Section: admin
 Priority: optional
 Description: Radxa U-Boot meta-package for Radxa RK3576 products
  This package provides the prebuilt U-Boot for Radxa RK3576 products.
+
+Package: u-boot-radxa-e54c
+Architecture: all
+Depends: u-boot-rk2601,
+         ${misc:Depends},
+Section: admin
+Priority: optional
+Description: Radxa U-Boot meta-package for Radxa E54C products
+ This package provides the prebuilt U-Boot for Radxa E54C products.
