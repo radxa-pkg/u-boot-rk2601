@@ -1,4 +1,4 @@
-UBOOT_PRODUCTS := radxa-rk3528 radxa-rk3576
+UBOOT_PRODUCTS := radxa-rk3528 rock-3b rock-3c radxa-rk3576 radxa-e54c rock-5b-plus rock-5c
 
 define find_latest_file
 $(shell find $(1) -name "$(2)*$(3)" 2>/dev/null | sort -Vr | head -1 | xargs realpath)
