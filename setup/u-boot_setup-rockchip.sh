@@ -11,9 +11,9 @@ if [[ ! -v ERROR_REQUIRE_TARGET ]]; then
 fi
 
 idbloader() {
-    if [ -e "$SCRIPT_DIR/idbloader-sd_nand.img" ]
+    if [ -e "$SCRIPT_DIR/idbloader_SPI_NAND.img" ]
     then
-        echo "$SCRIPT_DIR/idbloader-sd_nand.img"
+        echo "$SCRIPT_DIR/idbloader_SPI_NAND.img"
     else
         echo "$SCRIPT_DIR/idbloader.img"
     fi
@@ -22,7 +22,7 @@ idbloader() {
 rkboot() {
     if [ -e "$SCRIPT_DIR/rkboot_UART0_SD_NAND.bin" ]
     then
-        echo "$SCRIPT_DIR/rkboot_UART0_SD_NAND"
+        echo "$SCRIPT_DIR/rkboot_UART0_SD_NAND.bin"
     else
         echo "$SCRIPT_DIR/rkboot.bin"
     fi
@@ -30,11 +30,11 @@ rkboot() {
 
 build_spinor() {
     rm -f /tmp/spi.img
-    if [[ -f "$SCRIPT_DIR/idbloader-spi_spl.img" ]] && [[ -f "$SCRIPT_DIR/u-boot.itb" ]]
+    if [[ -f "$SCRIPT_DIR/idbloader_SPINOR.img" ]] && [[ -f "$SCRIPT_DIR/u-boot.itb" ]]
     then
         echo "Building Upstream RK3399 SPI U-Boot..."
         truncate -s 4M /tmp/spi.img
-        dd conv=notrunc,fsync if="$SCRIPT_DIR/idbloader-spi_spl.img" of=/tmp/spi.img bs=512
+        dd conv=notrunc,fsync if="$SCRIPT_DIR/idbloader_SPINOR.img" of=/tmp/spi.img bs=512
         dd conv=notrunc,fsync if="$SCRIPT_DIR/u-boot.itb" of=/tmp/spi.img bs=512 seek=768
     elif [[ -f "$SCRIPT_DIR/u-boot.itb" ]]
     then

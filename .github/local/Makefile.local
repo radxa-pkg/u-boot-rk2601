@@ -1,5 +1,7 @@
 UBOOT_PRODUCTS := radxa-rk3528 rock-3b rock-3c radxa-rk3576 radxa-e54c rock-5b-plus rock-5c
 
+PACKING_VARIANTS := "" "_SPINOR"
+
 #
 # Common supporting targets
 #
@@ -11,19 +13,29 @@ define find_latest_file
 	$(shell find $(1) -name "$(2)" 2>/dev/null | sort -V | tail -n 1 | xargs realpath)
 endef
 
-# Build and package U-Boot
+# Pack U-Boot
+# $1: SoC
+# $2: Variant
+define pack_uboot
+	if [ -f "rkbin/RKBOOT/$(subst rk,RK,$(1))MINIALL$(2).ini" ]; then \
+		sed -i "s|^FlashBoot=.*|FlashBoot=../src/spl/u-boot-spl.bin|g" "rkbin/RKBOOT/$(subst rk,RK,$(1))MINIALL$(2).ini"; \
+		sed -i "s|^PATH=.*|PATH=rkboot$(2).bin|g" "rkbin/RKBOOT/$(subst rk,RK,$(1))MINIALL$(2).ini"; \
+		sed -i "s|^IDB_PATH=.*|IDB_PATH=idblock$(2).img|g" "rkbin/RKBOOT/$(subst rk,RK,$(1))MINIALL$(2).ini"; \
+		cd rkbin && tools/boot_merger "RKBOOT/$(subst rk,RK,$(1))MINIALL$(2).ini" && cd ..; \
+	fi;
+endef
+
+# Build and Pack U-Boot
 # $1: SoC
 define build_uboot
 	$(UMAKE) BL31=$(call find_latest_file,rkbin/bin,"$(1)_bl31_v*.elf") all u-boot.itb
-	sed -i "s|FlashBoot=.*|FlashBoot=../src/spl/u-boot-spl.bin|g" "rkbin/RKBOOT/$(subst rk,RK,$(1))MINIALL.ini"
-	cd rkbin && tools/boot_merger "RKBOOT/$(subst rk,RK,$(1))MINIALL.ini"
+	$(foreach variant,$(PACKING_VARIANTS),$(call pack_uboot,$(1),$(variant)))
 endef
 
 # Install U-Boot binaries
 define install_uboot
 	mkdir -p out/$@
-	mv rkbin/*_loader_*.bin "out/$@/rkboot.bin"
-	mv rkbin/*idblock*.img "out/$@/idbloader.img"
+	mv rkbin/rkboot*.bin rkbin/idblock*.img "out/$@"
 	mv src/u-boot.itb "out/$@/"
 	cp setup/u-boot_setup-rockchip.sh out/$@/setup.sh
 	cp setup/u-boot_setup-rockchip.ps1 out/$@/setup.ps1
