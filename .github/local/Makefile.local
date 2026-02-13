@@ -18,7 +18,7 @@ radxa-rk3528_defconfig: clean_config
 
 .PHONY: radxa-rk3528_build
 radxa-rk3528_build: radxa-rk3528_defconfig
-	$(UMAKE) all u-boot.itb
+	$(UMAKE) all u-boot.itb BL31=$(call find_latest_file,rkbin/bin,rk3528_bl31_v,.elf)
 	sed -i "s|FlashBoot=.*|FlashBoot=../src/spl/u-boot-spl.bin|g" "rkbin/RKBOOT/RK3528MINIALL.ini"
 	cd rkbin && tools/boot_merger "RKBOOT/RK3528MINIALL.ini"
 
@@ -37,7 +37,7 @@ rock-3b_defconfig: clean_config
 
 .PHONY: rock-3b_build
 rock-3b_build: rock-3b_defconfig
-	$(UMAKE) all u-boot.itb
+	$(UMAKE) all u-boot.itb BL31=$(call find_latest_file,rkbin/bin,rk3568_bl31_v,.elf)
 	sed -i "s|FlashBoot=.*|FlashBoot=../src/spl/u-boot-spl.bin|g" "rkbin/RKBOOT/RK3568MINIALL.ini"
 	cd rkbin && tools/boot_merger "RKBOOT/RK3568MINIALL.ini"
 
@@ -56,7 +56,7 @@ rock-3c_defconfig: clean_config
 
 .PHONY: rock-3c_build
 rock-3c_build: rock-3c_defconfig
-	$(UMAKE) all u-boot.itb
+	$(UMAKE) all u-boot.itb BL31=$(call find_latest_file,rkbin/bin,rk3568_bl31_v,.elf)
 	sed -i "s|FlashBoot=.*|FlashBoot=../src/spl/u-boot-spl.bin|g" "rkbin/RKBOOT/RK3566MINIALL.ini"
 	cd rkbin && tools/boot_merger "RKBOOT/RK3566MINIALL.ini"
 
@@ -75,7 +75,7 @@ radxa-rk3576_defconfig: clean_config
 
 .PHONY: radxa-rk3576_build
 radxa-rk3576_build: radxa-rk3576_defconfig
-	$(UMAKE) all u-boot.itb
+	$(UMAKE) all u-boot.itb BL31=$(call find_latest_file,rkbin/bin,rk3576_bl31_v,.elf)
 	sed -i "s|FlashBoot=.*|FlashBoot=../src/spl/u-boot-spl.bin|g" "rkbin/RKBOOT/RK3576MINIALL.ini"
 	cd rkbin && tools/boot_merger "RKBOOT/RK3576MINIALL.ini"
 
@@ -94,7 +94,7 @@ radxa-e54c_defconfig: clean_config
 
 .PHONY: radxa-e54c_build
 radxa-e54c_build: radxa-e54c_defconfig
-	$(UMAKE) all u-boot.itb
+	$(UMAKE) all u-boot.itb BL31=$(call find_latest_file,rkbin/bin,rk3588_bl31_v,.elf)
 	sed -i "s|FlashBoot=.*|FlashBoot=../src/spl/u-boot-spl.bin|g" "rkbin/RKBOOT/RK3588MINIALL.ini"
 	cd rkbin && tools/boot_merger "RKBOOT/RK3588MINIALL.ini"
 
@@ -113,7 +113,7 @@ rock-5b-plus_defconfig: clean_config
 
 .PHONY: rock-5b-plus_build
 rock-5b-plus_build: rock-5b-plus_defconfig
-	$(UMAKE) all u-boot.itb
+	$(UMAKE) all u-boot.itb BL31=$(call find_latest_file,rkbin/bin,rk3588_bl31_v,.elf)
 	sed -i "s|FlashBoot=.*|FlashBoot=../src/spl/u-boot-spl.bin|g" "rkbin/RKBOOT/RK3588MINIALL.ini"
 	cd rkbin && tools/boot_merger "RKBOOT/RK3588MINIALL.ini"
 
@@ -132,7 +132,7 @@ rock-5c_defconfig: clean_config
 
 .PHONY: rock-5c_build
 rock-5c_build: rock-5c_defconfig
-	$(UMAKE) all u-boot.itb
+	$(UMAKE) all u-boot.itb BL31=$(call find_latest_file,rkbin/bin,rk3588_bl31_v,.elf)
 	sed -i "s|FlashBoot=.*|FlashBoot=../src/spl/u-boot-spl.bin|g" "rkbin/RKBOOT/RK3588MINIALL.ini"
 	cd rkbin && tools/boot_merger "RKBOOT/RK3588MINIALL.ini"
 
