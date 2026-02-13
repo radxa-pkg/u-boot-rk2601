@@ -8,20 +8,20 @@ Set-Variable ERROR_REQUIRE_FILE -Option Constant -Value -3
 Set-Variable ERROR_ILLEGAL_PARAMETERS -Option Constant -Value -4
 Set-Variable ERROR_REQUIRE_TARGET -Option Constant -Value -5
 
-Function idbloader{
-    if (Test-Path "$PSScriptRoot/idbloader-sd_nand.img"){
-        return "$PSScriptRoot/idbloader-sd_nand.img"
+Function idblock{
+    if (Test-Path "$PSScriptRoot/idblock_SPI_NAND.img"){
+        return "$PSScriptRoot/idblock_SPI_NAND.img"
     } else {
-        return "$PSScriptRoot/idbloader.img"
+        return "$PSScriptRoot/idblock.img"
     }
 }
 
 Function BuildSPINOR{
-    if ((Test-Path "$PSScriptRoot/idbloader-spi_spl.img","$PSScriptRoot/u-boot.itb") -notcontains $false) {
+    if ((Test-Path "$PSScriptRoot/idblock_SPINOR.img","$PSScriptRoot/u-boot.itb") -notcontains $false) {
         Write-Host "Building Upstream RK3399 SPI U-Boot..."
         $output = [FileStream]::new("spi.img", [FileMode]::Create, [FileAccess]::ReadWrite)
 
-        $input = [FileStream]::new("$PSScriptRoot/idbloader-spi_spl.img", [FileMode]::Open, [FileAccess]::Read)
+        $input = [FileStream]::new("$PSScriptRoot/idblock_SPINOR.img", [FileMode]::Open, [FileAccess]::Read)
         $output.Seek(0, [SeekOrigin]::Begin)
         $input.CopyTo($output)
         $input.Close()
@@ -37,7 +37,7 @@ Function BuildSPINOR{
         Write-Host "Building Rockchip RK35 SPI U-Boot..."
         $output = [FileStream]::new("spi.img", [FileMode]::Create, [FileAccess]::ReadWrite)
 
-        $input = [FileStream]::new((idbloader), [FileMode]::Open, [FileAccess]::Read)
+        $input = [FileStream]::new((idblock), [FileMode]::Open, [FileAccess]::Read)
         $output.Seek(512 * 64, [SeekOrigin]::Begin)
         $input.CopyTo($output)
         $input.Close()
@@ -49,11 +49,11 @@ Function BuildSPINOR{
 
         $output.SetLength(16MB)
         $output.Close()
-    } elseif ((Test-Path "$PSScriptRoot/idbloader-spi.img","$PSScriptRoot/uboot.img","$PSScriptRoot/trust.img") -notcontains $false) {
+    } elseif ((Test-Path "$PSScriptRoot/idblock-spi.img","$PSScriptRoot/uboot.img","$PSScriptRoot/trust.img") -notcontains $false) {
         Write-Host "Building Rockchip RK33 SPI U-Boot..."
         $output = [FileStream]::new("spi.img", [FileMode]::Create, [FileAccess]::ReadWrite)
 
-        $input = [FileStream]::new("$PSScriptRoot/idbloader-spi.img", [FileMode]::Open, [FileAccess]::Read)
+        $input = [FileStream]::new("$PSScriptRoot/idblock-spi.img", [FileMode]::Open, [FileAccess]::Read)
         $output.Seek(0, [SeekOrigin]::Begin)
         $input.CopyTo($output)
         $input.Close()

@@ -10,12 +10,12 @@ if [[ ! -v ERROR_REQUIRE_TARGET ]]; then
     readonly ERROR_REQUIRE_TARGET=-5
 fi
 
-idbloader() {
-    if [ -e "$SCRIPT_DIR/idbloader_SPI_NAND.img" ]
+idblock() {
+    if [ -e "$SCRIPT_DIR/idblock_SPI_NAND.img" ]
     then
-        echo "$SCRIPT_DIR/idbloader_SPI_NAND.img"
+        echo "$SCRIPT_DIR/idblock_SPI_NAND.img"
     else
-        echo "$SCRIPT_DIR/idbloader.img"
+        echo "$SCRIPT_DIR/idblock.img"
     fi
 }
 
@@ -30,23 +30,23 @@ rkboot() {
 
 build_spinor() {
     rm -f /tmp/spi.img
-    if [[ -f "$SCRIPT_DIR/idbloader_SPINOR.img" ]] && [[ -f "$SCRIPT_DIR/u-boot.itb" ]]
+    if [[ -f "$SCRIPT_DIR/idblock_SPINOR.img" ]] && [[ -f "$SCRIPT_DIR/u-boot.itb" ]]
     then
         echo "Building Upstream RK3399 SPI U-Boot..."
         truncate -s 4M /tmp/spi.img
-        dd conv=notrunc,fsync if="$SCRIPT_DIR/idbloader_SPINOR.img" of=/tmp/spi.img bs=512
+        dd conv=notrunc,fsync if="$SCRIPT_DIR/idblock_SPINOR.img" of=/tmp/spi.img bs=512
         dd conv=notrunc,fsync if="$SCRIPT_DIR/u-boot.itb" of=/tmp/spi.img bs=512 seek=768
     elif [[ -f "$SCRIPT_DIR/u-boot.itb" ]]
     then
         echo "Building Rockchip RK35 SPI U-Boot..."
         truncate -s 16M /tmp/spi.img
-        dd conv=notrunc,fsync if="$(idbloader)" of=/tmp/spi.img bs=512 seek=64
+        dd conv=notrunc,fsync if="$(idblock)" of=/tmp/spi.img bs=512 seek=64
         dd conv=notrunc,fsync if="$SCRIPT_DIR/u-boot.itb" of=/tmp/spi.img bs=512 seek=16384
-    elif [[ -f "$SCRIPT_DIR/idbloader-spi.img" ]] && [[ -f "$SCRIPT_DIR/uboot.img" ]] && [[ -f "$SCRIPT_DIR/trust.img" ]]
+    elif [[ -f "$SCRIPT_DIR/idblock-spi.img" ]] && [[ -f "$SCRIPT_DIR/uboot.img" ]] && [[ -f "$SCRIPT_DIR/trust.img" ]]
     then
         echo "Building Rockchip RK33 SPI U-Boot..."
         truncate -s 4M /tmp/spi.img
-        dd conv=notrunc,fsync if="$SCRIPT_DIR/idbloader-spi.img" of=/tmp/spi.img bs=512
+        dd conv=notrunc,fsync if="$SCRIPT_DIR/idblock-spi.img" of=/tmp/spi.img bs=512
         dd conv=notrunc,fsync if="$SCRIPT_DIR/uboot.img" of=/tmp/spi.img bs=512 seek=4096
         dd conv=notrunc,fsync if="$SCRIPT_DIR/trust.img" of=/tmp/spi.img bs=512 seek=6144
     else
@@ -83,12 +83,12 @@ maskrom_spinand() {
     fi
 }
 
-maskrom_update_idbloader() {
-    rkdeveloptool wl 64 "$(idbloader)"
+maskrom_update_idblock() {
+    rkdeveloptool wl 64 "$(idblock)"
 }
 
 maskrom_update_bootloader() {
-    maskrom_update_idbloader
+    maskrom_update_idblock
     if [[ -f "$SCRIPT_DIR/u-boot.itb" ]]
     then
         rkdeveloptool wl 16384 "$SCRIPT_DIR/u-boot.itb"
@@ -157,19 +157,19 @@ maskrom_reset() {
     rkdeveloptool rd
 }
 
-update_idbloader() {
+update_idblock() {
     local DEVICE=$1
 
     # UFS offset on LUN 1
-    dd conv=notrunc,fsync if="$(idbloader)" of=$DEVICE bs=4096 seek=136
+    dd conv=notrunc,fsync if="$(idblock)" of=$DEVICE bs=4096 seek=136
     # SD/eMMC offset
-    dd conv=notrunc,fsync if="$(idbloader)" of=$DEVICE bs=512 seek=64
+    dd conv=notrunc,fsync if="$(idblock)" of=$DEVICE bs=512 seek=64
 }
 
 update_bootloader() {
     local DEVICE=$1
 
-    update_idbloader "$DEVICE"
+    update_idblock "$DEVICE"
     if [[ -f "$SCRIPT_DIR/u-boot.itb" ]]
     then
         # UFS uses the same offset as SD/eMMC on LUN 0
