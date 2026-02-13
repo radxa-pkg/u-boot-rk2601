@@ -1,12 +1,33 @@
 UBOOT_PRODUCTS := radxa-rk3528 rock-3b rock-3c radxa-rk3576 radxa-e54c rock-5b-plus rock-5c
 
-define find_latest_file
-$(shell find $(1) -name "$(2)*$(3)" 2>/dev/null | sort -Vr | head -1 | xargs realpath)
-endef
-
 #
 # Common supporting targets
 #
+
+# Find the latest firmware from rkbin
+# $1: base dir
+# $2: filter
+define find_latest_file
+	$(shell find $(1) -name "$(2)" 2>/dev/null | sort -V | tail -n 1 | xargs realpath)
+endef
+
+# Build and package U-Boot
+# $1: SoC
+define build_uboot
+	$(UMAKE) BL31=$(call find_latest_file,rkbin/bin,"$(1)_bl31_v*.elf") all u-boot.itb
+	sed -i "s|FlashBoot=.*|FlashBoot=../src/spl/u-boot-spl.bin|g" "rkbin/RKBOOT/$(subst rk,RK,$(1))MINIALL.ini"
+	cd rkbin && tools/boot_merger "RKBOOT/$(subst rk,RK,$(1))MINIALL.ini"
+endef
+
+# Install U-Boot binaries
+define install_uboot
+	mkdir -p out/$@
+	mv rkbin/*_loader_*.bin "out/$@/rkboot.bin"
+	mv rkbin/*idblock*.img "out/$@/idbloader.img"
+	mv src/u-boot.itb "out/$@/"
+	cp setup/u-boot_setup-rockchip.sh out/$@/setup.sh
+	cp setup/u-boot_setup-rockchip.ps1 out/$@/setup.ps1
+endef
 
 #
 # Device build targets
@@ -18,18 +39,11 @@ radxa-rk3528_defconfig: clean_config
 
 .PHONY: radxa-rk3528_build
 radxa-rk3528_build: radxa-rk3528_defconfig
-	$(UMAKE) all u-boot.itb BL31=$(call find_latest_file,rkbin/bin,rk3528_bl31_v,.elf)
-	sed -i "s|FlashBoot=.*|FlashBoot=../src/spl/u-boot-spl.bin|g" "rkbin/RKBOOT/RK3528MINIALL.ini"
-	cd rkbin && tools/boot_merger "RKBOOT/RK3528MINIALL.ini"
+	$(call build_uboot,rk3528)
 
 .PHONY: radxa-rk3528
 radxa-rk3528: radxa-rk3528_build
-	mkdir -p out/$@
-	mv rkbin/*_loader_*.bin "out/$@/rkboot.bin"
-	mv rkbin/*idblock*.img "out/$@/idbloader.img"
-	mv src/u-boot.itb "out/$@/"
-	cp setup/u-boot_setup-rockchip.sh out/$@/setup.sh
-	cp setup/u-boot_setup-rockchip.ps1 out/$@/setup.ps1
+	$(call install_uboot,rk3528)
 
 .PHONY: rock-3b_defconfig
 rock-3b_defconfig: clean_config
@@ -37,18 +51,11 @@ rock-3b_defconfig: clean_config
 
 .PHONY: rock-3b_build
 rock-3b_build: rock-3b_defconfig
-	$(UMAKE) all u-boot.itb BL31=$(call find_latest_file,rkbin/bin,rk3568_bl31_v,.elf)
-	sed -i "s|FlashBoot=.*|FlashBoot=../src/spl/u-boot-spl.bin|g" "rkbin/RKBOOT/RK3568MINIALL.ini"
-	cd rkbin && tools/boot_merger "RKBOOT/RK3568MINIALL.ini"
+	$(call build_uboot,rk3568)
 
 .PHONY: rock-3b
 rock-3b: rock-3b_build
-	mkdir -p out/$@
-	mv rkbin/*_loader_*.bin "out/$@/rkboot.bin"
-	mv rkbin/*idblock*.img "out/$@/idbloader.img"
-	mv src/u-boot.itb "out/$@/"
-	cp setup/u-boot_setup-rockchip.sh out/$@/setup.sh
-	cp setup/u-boot_setup-rockchip.ps1 out/$@/setup.ps1
+	$(call install_uboot,rk3568)
 
 .PHONY: rock-3c_defconfig
 rock-3c_defconfig: clean_config
@@ -56,18 +63,11 @@ rock-3c_defconfig: clean_config
 
 .PHONY: rock-3c_build
 rock-3c_build: rock-3c_defconfig
-	$(UMAKE) all u-boot.itb BL31=$(call find_latest_file,rkbin/bin,rk3568_bl31_v,.elf)
-	sed -i "s|FlashBoot=.*|FlashBoot=../src/spl/u-boot-spl.bin|g" "rkbin/RKBOOT/RK3566MINIALL.ini"
-	cd rkbin && tools/boot_merger "RKBOOT/RK3566MINIALL.ini"
+	$(call build_uboot,rk3568)
 
 .PHONY: rock-3c
 rock-3c: rock-3c_build
-	mkdir -p out/$@
-	mv rkbin/*_loader_*.bin "out/$@/rkboot.bin"
-	mv rkbin/*idblock*.img "out/$@/idbloader.img"
-	mv src/u-boot.itb "out/$@/"
-	cp setup/u-boot_setup-rockchip.sh out/$@/setup.sh
-	cp setup/u-boot_setup-rockchip.ps1 out/$@/setup.ps1
+	$(call install_uboot,rk3568)
 
 .PHONY: radxa-rk3576_defconfig
 radxa-rk3576_defconfig: clean_config
@@ -75,18 +75,11 @@ radxa-rk3576_defconfig: clean_config
 
 .PHONY: radxa-rk3576_build
 radxa-rk3576_build: radxa-rk3576_defconfig
-	$(UMAKE) all u-boot.itb BL31=$(call find_latest_file,rkbin/bin,rk3576_bl31_v,.elf)
-	sed -i "s|FlashBoot=.*|FlashBoot=../src/spl/u-boot-spl.bin|g" "rkbin/RKBOOT/RK3576MINIALL.ini"
-	cd rkbin && tools/boot_merger "RKBOOT/RK3576MINIALL.ini"
+	$(call build_uboot,rk3576)
 
 .PHONY: radxa-rk3576
 radxa-rk3576: radxa-rk3576_build
-	mkdir -p out/$@
-	mv rkbin/*_loader_*.bin "out/$@/rkboot.bin"
-	mv rkbin/*idblock*.img "out/$@/idbloader.img"
-	mv src/u-boot.itb "out/$@/"
-	cp setup/u-boot_setup-rockchip.sh out/$@/setup.sh
-	cp setup/u-boot_setup-rockchip.ps1 out/$@/setup.ps1
+	$(call install_uboot,rk3576)
 
 .PHONY: radxa-e54c_defconfig
 radxa-e54c_defconfig: clean_config
@@ -94,18 +87,11 @@ radxa-e54c_defconfig: clean_config
 
 .PHONY: radxa-e54c_build
 radxa-e54c_build: radxa-e54c_defconfig
-	$(UMAKE) all u-boot.itb BL31=$(call find_latest_file,rkbin/bin,rk3588_bl31_v,.elf)
-	sed -i "s|FlashBoot=.*|FlashBoot=../src/spl/u-boot-spl.bin|g" "rkbin/RKBOOT/RK3588MINIALL.ini"
-	cd rkbin && tools/boot_merger "RKBOOT/RK3588MINIALL.ini"
+	$(call build_uboot,rk3588)
 
 .PHONY: radxa-e54c
 radxa-e54c: radxa-e54c_build
-	mkdir -p out/$@
-	mv rkbin/*_loader_*.bin "out/$@/rkboot.bin"
-	mv rkbin/*idblock*.img "out/$@/idbloader.img"
-	mv src/u-boot.itb "out/$@/"
-	cp setup/u-boot_setup-rockchip.sh out/$@/setup.sh
-	cp setup/u-boot_setup-rockchip.ps1 out/$@/setup.ps1
+	$(call install_uboot,rk3588)
 
 .PHONY: rock-5b-plus_defconfig
 rock-5b-plus_defconfig: clean_config
@@ -113,18 +99,11 @@ rock-5b-plus_defconfig: clean_config
 
 .PHONY: rock-5b-plus_build
 rock-5b-plus_build: rock-5b-plus_defconfig
-	$(UMAKE) all u-boot.itb BL31=$(call find_latest_file,rkbin/bin,rk3588_bl31_v,.elf)
-	sed -i "s|FlashBoot=.*|FlashBoot=../src/spl/u-boot-spl.bin|g" "rkbin/RKBOOT/RK3588MINIALL.ini"
-	cd rkbin && tools/boot_merger "RKBOOT/RK3588MINIALL.ini"
+	$(call build_uboot,rk3588)
 
 .PHONY: rock-5b-plus
 rock-5b-plus: rock-5b-plus_build
-	mkdir -p out/$@
-	mv rkbin/*_loader_*.bin "out/$@/rkboot.bin"
-	mv rkbin/*idblock*.img "out/$@/idbloader.img"
-	mv src/u-boot.itb "out/$@/"
-	cp setup/u-boot_setup-rockchip.sh out/$@/setup.sh
-	cp setup/u-boot_setup-rockchip.ps1 out/$@/setup.ps1
+	$(call install_uboot,rk3588)
 
 .PHONY: rock-5c_defconfig
 rock-5c_defconfig: clean_config
@@ -132,15 +111,8 @@ rock-5c_defconfig: clean_config
 
 .PHONY: rock-5c_build
 rock-5c_build: rock-5c_defconfig
-	$(UMAKE) all u-boot.itb BL31=$(call find_latest_file,rkbin/bin,rk3588_bl31_v,.elf)
-	sed -i "s|FlashBoot=.*|FlashBoot=../src/spl/u-boot-spl.bin|g" "rkbin/RKBOOT/RK3588MINIALL.ini"
-	cd rkbin && tools/boot_merger "RKBOOT/RK3588MINIALL.ini"
+	$(call build_uboot,rk3588)
 
 .PHONY: rock-5c
 rock-5c: rock-5c_build
-	mkdir -p out/$@
-	mv rkbin/*_loader_*.bin "out/$@/rkboot.bin"
-	mv rkbin/*idblock*.img "out/$@/idbloader.img"
-	mv src/u-boot.itb "out/$@/"
-	cp setup/u-boot_setup-rockchip.sh out/$@/setup.sh
-	cp setup/u-boot_setup-rockchip.ps1 out/$@/setup.ps1
+	$(call install_uboot,rk3588)
