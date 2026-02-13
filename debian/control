@@ -35,65 +35,83 @@ Replaces: u-boot-rk2410 (<= 2017.09-62-12b7493)
 Description: U-Boot based on boot-rk2601
  This package provides the prebuilt U-Boot based on boot-rk2601.
 
+Package: u-boot-radxa-e54c
+Architecture: all
+Depends: u-boot-rk2601 (= ${binary:Version}),
+         ${misc:Depends},
+Section: admin
+Priority: optional
+Description: Radxa U-Boot meta-package for Radxa E54C
+ This package provides the prebuilt U-Boot for Radxa E54C.
+
+Package: u-boot-radxa-e54c-spi
+Architecture: all
+Depends: u-boot-rk2601 (= ${binary:Version}),
+         ${misc:Depends},
+Section: admin
+Priority: optional
+Description: Radxa U-Boot meta-package for Radxa E54C SPI
+ This package provides the prebuilt U-Boot for Radxa E54C SPI.
+
 Package: u-boot-radxa-rk3528
 Architecture: all
-Depends: u-boot-rk2601,
+Depends: u-boot-rk2601 (= ${binary:Version}),
          ${misc:Depends},
 Section: admin
 Priority: optional
 Description: Radxa U-Boot meta-package for Radxa RK3528 products
  This package provides the prebuilt U-Boot for Radxa RK3528 products.
 
-Package: u-boot-rock-3b
-Architecture: all
-Depends: u-boot-rk2601,
-         ${misc:Depends},
-Section: admin
-Priority: optional
-Description: Radxa U-Boot meta-package for ROCK 3B products
- This package provides the prebuilt U-Boot for ROCK 3B products.
-
-Package: u-boot-rock-3c
-Architecture: all
-Depends: u-boot-rk2601,
-         ${misc:Depends},
-Section: admin
-Priority: optional
-Description: Radxa U-Boot meta-package for ROCK 3C products
- This package provides the prebuilt U-Boot for ROCK 3C products.
-
 Package: u-boot-radxa-rk3576
 Architecture: all
-Depends: u-boot-rk2601,
+Depends: u-boot-rk2601 (= ${binary:Version}),
          ${misc:Depends},
 Section: admin
 Priority: optional
 Description: Radxa U-Boot meta-package for Radxa RK3576 products
  This package provides the prebuilt U-Boot for Radxa RK3576 products.
 
-Package: u-boot-radxa-e54c
+Package: u-boot-radxa-rk3576-spi
 Architecture: all
-Depends: u-boot-rk2601,
+Depends: u-boot-rk2601 (= ${binary:Version}),
          ${misc:Depends},
 Section: admin
 Priority: optional
-Description: Radxa U-Boot meta-package for Radxa E54C products
- This package provides the prebuilt U-Boot for Radxa E54C products.
+Description: Radxa U-Boot meta-package for Radxa RK3576 SPI products
+ This package provides the prebuilt U-Boot for Radxa RK3576 SPI products.
+
+Package: u-boot-rock-3b
+Architecture: all
+Depends: u-boot-rk2601 (= ${binary:Version}),
+         ${misc:Depends},
+Section: admin
+Priority: optional
+Description: Radxa U-Boot meta-package for ROCK 3B
+ This package provides the prebuilt U-Boot for ROCK 3B.
+
+Package: u-boot-rock-3c
+Architecture: all
+Depends: u-boot-rk2601 (= ${binary:Version}),
+         ${misc:Depends},
+Section: admin
+Priority: optional
+Description: Radxa U-Boot meta-package for ROCK 3C
+ This package provides the prebuilt U-Boot for ROCK 3C.
 
 Package: u-boot-rock-5b-plus
 Architecture: all
-Depends: u-boot-rk2601,
+Depends: u-boot-rk2601 (= ${binary:Version}),
          ${misc:Depends},
 Section: admin
 Priority: optional
-Description: Radxa U-Boot meta-package for ROCK 5B+ products
- This package provides the prebuilt U-Boot for ROCK 5B+ products.
+Description: Radxa U-Boot meta-package for ROCK 5B+
+ This package provides the prebuilt U-Boot for ROCK 5B+.
 
 Package: u-boot-rock-5c
 Architecture: all
-Depends: u-boot-rk2601,
+Depends: u-boot-rk2601 (= ${binary:Version}),
          ${misc:Depends},
 Section: admin
 Priority: optional
-Description: Radxa U-Boot meta-package for ROCK 5C products
- This package provides the prebuilt U-Boot for ROCK 5C products.
+Description: Radxa U-Boot meta-package for ROCK 5C
+ This package provides the prebuilt U-Boot for ROCK 5C.

@@ -1,4 +1,14 @@
-UBOOT_PRODUCTS := radxa-rk3528 rock-3b rock-3c radxa-rk3576 radxa-e54c rock-5b-plus rock-5c
+UBOOT_PRODUCTS := \
+	radxa-e54c \
+	radxa-e54c-spi \
+	radxa-rk3528 \
+	radxa-rk3576 \
+	radxa-rk3576-spi \
+	rock-3b \
+	rock-3c \
+	rock-5b-plus \
+	rock-5c \
+	# End of UBOOT_PRODUCTS
 
 PACKING_VARIANTS := "" "_SPINOR"
 
@@ -45,6 +55,30 @@ endef
 # Device build targets
 #
 
+.PHONY: radxa-e54c_defconfig
+radxa-e54c_defconfig: clean_config
+	$(UMAKE) radxa-e54c-rk3588s_defconfig
+
+.PHONY: radxa-e54c_build
+radxa-e54c_build: radxa-e54c_defconfig
+	$(call build_uboot,rk3588)
+
+.PHONY: radxa-e54c
+radxa-e54c: radxa-e54c_build
+	$(call install_uboot,rk3588)
+
+.PHONY: radxa-e54c-spi_defconfig
+radxa-e54c-spi_defconfig: clean_config
+	$(UMAKE) radxa-e54c-spi-rk3588s_defconfig
+
+.PHONY: radxa-e54c-spi_build
+radxa-e54c-spi_build: radxa-e54c-spi_defconfig
+	$(call build_uboot,rk3588)
+
+.PHONY: radxa-e54c-spi
+radxa-e54c-spi: radxa-e54c-spi_build
+	$(call install_uboot,rk3588)
+
 .PHONY: radxa-rk3528_defconfig
 radxa-rk3528_defconfig: clean_config
 	$(UMAKE) rock-2-rk3528_defconfig
@@ -56,6 +90,30 @@ radxa-rk3528_build: radxa-rk3528_defconfig
 .PHONY: radxa-rk3528
 radxa-rk3528: radxa-rk3528_build
 	$(call install_uboot,rk3528)
+
+.PHONY: radxa-rk3576_defconfig
+radxa-rk3576_defconfig: clean_config
+	$(UMAKE) rock-4d-rk3576_defconfig
+
+.PHONY: radxa-rk3576_build
+radxa-rk3576_build: radxa-rk3576_defconfig
+	$(call build_uboot,rk3576)
+
+.PHONY: radxa-rk3576
+radxa-rk3576: radxa-rk3576_build
+	$(call install_uboot,rk3576)
+
+.PHONY: radxa-rk3576-spi_defconfig
+radxa-rk3576-spi_defconfig: clean_config
+	$(UMAKE) rock-4d-spi-rk3576_defconfig
+
+.PHONY: radxa-rk3576-spi_build
+radxa-rk3576-spi_build: radxa-rk3576-spi_defconfig
+	$(call build_uboot,rk3576)
+
+.PHONY: radxa-rk3576-spi
+radxa-rk3576-spi: radxa-rk3576-spi_build
+	$(call install_uboot,rk3576)
 
 .PHONY: rock-3b_defconfig
 rock-3b_defconfig: clean_config
@@ -80,30 +138,6 @@ rock-3c_build: rock-3c_defconfig
 .PHONY: rock-3c
 rock-3c: rock-3c_build
 	$(call install_uboot,rk3568)
-
-.PHONY: radxa-rk3576_defconfig
-radxa-rk3576_defconfig: clean_config
-	$(UMAKE) rock-4d-rk3576_defconfig
-
-.PHONY: radxa-rk3576_build
-radxa-rk3576_build: radxa-rk3576_defconfig
-	$(call build_uboot,rk3576)
-
-.PHONY: radxa-rk3576
-radxa-rk3576: radxa-rk3576_build
-	$(call install_uboot,rk3576)
-
-.PHONY: radxa-e54c_defconfig
-radxa-e54c_defconfig: clean_config
-	$(UMAKE) radxa-e54c-spi-rk3588s_defconfig
-
-.PHONY: radxa-e54c_build
-radxa-e54c_build: radxa-e54c_defconfig
-	$(call build_uboot,rk3588)
-
-.PHONY: radxa-e54c
-radxa-e54c: radxa-e54c_build
-	$(call install_uboot,rk3588)
 
 .PHONY: rock-5b-plus_defconfig
 rock-5b-plus_defconfig: clean_config
