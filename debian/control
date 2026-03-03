@@ -73,7 +73,7 @@ Description: Radxa U-Boot meta-package for Radxa RK3576 products
 
 Package: u-boot-radxa-rk3576-spi
 Architecture: all
-Depends: u-boot-rk2601 (= ${binary:Version}),N
+Depends: u-boot-rk2601 (= ${binary:Version}),
          ${misc:Depends},
 Section: admin
 Priority: optional
