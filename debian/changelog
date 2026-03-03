@@ -1,5 +1,27 @@
-u-boot-rk2601 (2017.09-63) UNRELEASED; urgency=medium
+u-boot-rk2601 (2017.09-63) unstable; urgency=medium
 
+  [ "Radxa Computer Co., Ltd" ]
   * Add initial Debian packaging support
 
- -- "Radxa Computer Co., Ltd" <dev@radxa.com>  Thu, 01 Jan 1970 08:00:00 +0800
+  [ ZHANG Yuntian ]
+  * fix: limit publishing repo
+  * chore: add sample implementation for radxa-rk3528
+  * fix: allow rk2601 to replacec rk2410
+  * feat: add radxa-rk3576
+  * refactor: define common helpers
+  * feat: support multiple packing profiles
+  * fix: idbloader is now idblock
+  * feat: add SPI variant for E54C and RK3576
+  * fix: remove typo
+
+  [ Xinming Chen ]
+  * feat: add ROCK 3B
+  * feat: add ROCK 3C
+  * feat: add Radxa E54C
+  * feat: add ROCK 5B+
+  * feat: add ROCK 5C
+  * fix:Add missing product configuration
+  * fix:Update rkbin to latest commit
+  * fix: Makefile.local: add BL31 parameter
+
+ -- "Radxa Computer Co., Ltd" <dev@radxa.com>  Tue, 03 Mar 2026 07:22:51 +0000
