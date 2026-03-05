@@ -8,6 +8,7 @@ UBOOT_PRODUCTS := \
 	rock-3c \
 	rock-5b-plus \
 	rock-5c \
+	rock-5c-spi \
 	# End of UBOOT_PRODUCTS
 
 PACKING_VARIANTS := "" "_SPINOR"
@@ -161,4 +162,16 @@ rock-5c_build: rock-5c_defconfig
 
 .PHONY: rock-5c
 rock-5c: rock-5c_build
+	$(call install_uboot,rk3588)
+
+.PHONY: rock-5c-spi_defconfig
+rock-5c-spi_defconfig: clean_config
+	$(UMAKE) rock-5c-spi-rk3588s_defconfig
+
+.PHONY: rock-5c-spi_build
+rock-5c-spi_build: rock-5c_defconfig
+	$(call build_uboot,rk3588)
+
+.PHONY: rock-5c-spi
+rock-5c-spi: rock-5c-spi_build
 	$(call install_uboot,rk3588)

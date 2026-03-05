@@ -142,3 +142,15 @@ Section: admin
 Priority: optional
 Description: Radxa U-Boot meta-package for ROCK 5C
  This package provides the prebuilt U-Boot for ROCK 5C.
+
+Package: u-boot-rock-5c-spi
+Architecture: all
+Depends: u-boot-rk2601 (= ${binary:Version}),
+         ${misc:Depends},
+Provides: u-boot-rock-5c-spi (= 2017.09-63-fffffff)
+Conflicts: u-boot-rock-5c-spi (<= 2017.09-62-12b7493)
+Replaces: u-boot-rock-5c-spi (<= 2017.09-62-12b7493)
+Section: admin
+Priority: optional
+Description: Radxa U-Boot meta-package for ROCK 5C SPI
+ This package provides the prebuilt U-Boot for ROCK 5C SPI.
