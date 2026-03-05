@@ -66,7 +66,7 @@ radxa-e54c_build: radxa-e54c_defconfig
 
 .PHONY: radxa-e54c
 radxa-e54c: radxa-e54c_build
-	$(call install_uboot,rk3588)
+	$(call install_uboot)
 
 .PHONY: radxa-e54c-spi_defconfig
 radxa-e54c-spi_defconfig: clean_config
@@ -78,7 +78,7 @@ radxa-e54c-spi_build: radxa-e54c-spi_defconfig
 
 .PHONY: radxa-e54c-spi
 radxa-e54c-spi: radxa-e54c-spi_build
-	$(call install_uboot,rk3588)
+	$(call install_uboot)
 
 .PHONY: radxa-rk3528_defconfig
 radxa-rk3528_defconfig: clean_config
@@ -90,7 +90,7 @@ radxa-rk3528_build: radxa-rk3528_defconfig
 
 .PHONY: radxa-rk3528
 radxa-rk3528: radxa-rk3528_build
-	$(call install_uboot,rk3528)
+	$(call install_uboot)
 
 .PHONY: radxa-rk3576_defconfig
 radxa-rk3576_defconfig: clean_config
@@ -102,7 +102,7 @@ radxa-rk3576_build: radxa-rk3576_defconfig
 
 .PHONY: radxa-rk3576
 radxa-rk3576: radxa-rk3576_build
-	$(call install_uboot,rk3576)
+	$(call install_uboot)
 
 .PHONY: radxa-rk3576-spi_defconfig
 radxa-rk3576-spi_defconfig: clean_config
@@ -114,7 +114,7 @@ radxa-rk3576-spi_build: radxa-rk3576-spi_defconfig
 
 .PHONY: radxa-rk3576-spi
 radxa-rk3576-spi: radxa-rk3576-spi_build
-	$(call install_uboot,rk3576)
+	$(call install_uboot)
 
 .PHONY: rock-3b_defconfig
 rock-3b_defconfig: clean_config
@@ -126,7 +126,7 @@ rock-3b_build: rock-3b_defconfig
 
 .PHONY: rock-3b
 rock-3b: rock-3b_build
-	$(call install_uboot,rk3568)
+	$(call install_uboot)
 
 .PHONY: rock-3c_defconfig
 rock-3c_defconfig: clean_config
@@ -138,7 +138,7 @@ rock-3c_build: rock-3c_defconfig
 
 .PHONY: rock-3c
 rock-3c: rock-3c_build
-	$(call install_uboot,rk3568)
+	$(call install_uboot)
 
 .PHONY: rock-5b-plus_defconfig
 rock-5b-plus_defconfig: clean_config
@@ -150,7 +150,7 @@ rock-5b-plus_build: rock-5b-plus_defconfig
 
 .PHONY: rock-5b-plus
 rock-5b-plus: rock-5b-plus_build
-	$(call install_uboot,rk3588)
+	$(call install_uboot)
 
 .PHONY: rock-5c_defconfig
 rock-5c_defconfig: clean_config
@@ -162,7 +162,7 @@ rock-5c_build: rock-5c_defconfig
 
 .PHONY: rock-5c
 rock-5c: rock-5c_build
-	$(call install_uboot,rk3588)
+	$(call install_uboot)
 
 .PHONY: rock-5c-spi_defconfig
 rock-5c-spi_defconfig: clean_config
@@ -174,4 +174,4 @@ rock-5c-spi_build: rock-5c_defconfig
 
 .PHONY: rock-5c-spi
 rock-5c-spi: rock-5c-spi_build
-	$(call install_uboot,rk3588)
+	$(call install_uboot)
