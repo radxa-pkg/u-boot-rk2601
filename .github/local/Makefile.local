@@ -21,7 +21,7 @@ PACKING_VARIANTS := "" "_SPINOR"
 # $1: base dir
 # $2: filter
 define find_latest_file
-	$(shell find $(1) -name "$(2)" 2>/dev/null | sort -V | tail -n 1 | xargs realpath)
+$(shell find $(1) -name "$(2)" 2>/dev/null | sort -V | tail -n 1 | xargs realpath)
 endef
 
 # Pack U-Boot
