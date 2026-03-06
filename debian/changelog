@@ -1,3 +1,10 @@
+u-boot-rk2601 (2017.09-65) unstable; urgency=medium
+
+  [ Xinming Chen ]
+  * fix: correct BL31 path issue
+
+ -- "Radxa Computer Co., Ltd" <dev@radxa.com>  Fri, 06 Mar 2026 10:52:30 +0000
+
 u-boot-rk2601 (2017.09-64) unstable; urgency=medium
 
   [ ZHANG Yuntian ]
