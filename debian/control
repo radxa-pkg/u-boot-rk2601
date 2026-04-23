@@ -71,6 +71,18 @@ Priority: optional
 Description: Radxa U-Boot meta-package for Radxa RK3528 products
  This package provides the prebuilt U-Boot for Radxa RK3528 products.
 
+Package: u-boot-radxa-cm3i-io
+Architecture: all
+Depends: u-boot-rk2601 (= ${binary:Version}),
+         ${misc:Depends},
+Provides: u-boot-radxa-cm3i-io (= 2017.09-63-fffffff)
+Conflicts: u-boot-radxa-cm3i-io (<= 2017.09-62-12b7493)
+Replaces: u-boot-radxa-cm3i-io (<= 2017.09-62-12b7493)
+Section: admin
+Priority: optional
+Description: Radxa U-Boot meta-package for Radxa CM3I
+ This package provides the prebuilt U-Boot for Radxa CM3I.
+
 Package: u-boot-radxa-rk3576
 Architecture: all
 Depends: u-boot-rk2601 (= ${binary:Version}),
