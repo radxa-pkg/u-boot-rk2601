@@ -1,3 +1,14 @@
+u-boot-rk2601 (2017.09-67) unstable; urgency=medium
+
+  [ Xinming Chen ]
+  * feat:add Radxa cm3i
+  * update: change src submodule to 2c613ef
+
+  [ github-actions[bot] ]
+  * chore: update submodules
+
+ -- "Radxa Computer Co., Ltd" <dev@radxa.com>  Wed, 29 Apr 2026 09:03:53 +0000
+
 u-boot-rk2601 (2017.09-66) unstable; urgency=medium
 
   [ Xinming Chen ]
