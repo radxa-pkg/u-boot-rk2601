@@ -2,6 +2,7 @@ UBOOT_PRODUCTS := \
 	radxa-e54c \
 	radxa-e54c-spi \
 	radxa-rk3528 \
+	radxa-cm3-io \
 	radxa-cm3i-io \
 	radxa-rk3576 \
 	radxa-rk3576-spi \
@@ -92,6 +93,18 @@ radxa-rk3528_build: radxa-rk3528_defconfig
 
 .PHONY: radxa-rk3528
 radxa-rk3528: radxa-rk3528_build
+	$(call install_uboot)
+
+.PHONY: radxa-cm3-io_defconfig
+radxa-cm3-io_defconfig: clean_config
+	$(UMAKE) radxa-cm3-io-rk3566_defconfig
+
+.PHONY: radxa-cm3-io_build
+radxa-cm3-io_build: radxa-cm3-io_defconfig
+	$(call build_uboot,rk3566)
+
+.PHONY: radxa-cm3-io
+radxa-cm3-io: radxa-cm3-io_build
 	$(call install_uboot)
 
 .PHONY: radxa-cm3i-io_defconfig
