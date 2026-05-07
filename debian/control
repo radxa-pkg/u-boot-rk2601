@@ -39,9 +39,6 @@ Package: u-boot-radxa-e54c
 Architecture: all
 Depends: u-boot-rk2601 (= ${binary:Version}),
          ${misc:Depends},
-Provides: u-boot-radxa-e54c (= 2017.09-63-fffffff)
-Conflicts: u-boot-radxa-e54c (<= 2017.09-62-12b7493)
-Replaces: u-boot-radxa-e54c (<= 2017.09-62-12b7493)
 Section: admin
 Priority: optional
 Description: Radxa U-Boot meta-package for Radxa E54C
@@ -51,9 +48,6 @@ Package: u-boot-radxa-e54c-spi
 Architecture: all
 Depends: u-boot-rk2601 (= ${binary:Version}),
          ${misc:Depends},
-Provides: u-boot-radxa-e54c-spi (= 2017.09-63-fffffff)
-Conflicts: u-boot-radxa-e54c-spi (<= 2017.09-62-12b7493)
-Replaces: u-boot-radxa-e54c-spi (<= 2017.09-62-12b7493)
 Section: admin
 Priority: optional
 Description: Radxa U-Boot meta-package for Radxa E54C SPI
@@ -63,9 +57,6 @@ Package: u-boot-radxa-rk3528
 Architecture: all
 Depends: u-boot-rk2601 (= ${binary:Version}),
          ${misc:Depends},
-Provides: u-boot-radxa-rk3528 (= 2017.09-63-fffffff)
-Conflicts: u-boot-radxa-rk3528 (<= 2017.09-62-12b7493)
-Replaces: u-boot-radxa-rk3528 (<= 2017.09-62-12b7493)
 Section: admin
 Priority: optional
 Description: Radxa U-Boot meta-package for Radxa RK3528 products
@@ -75,9 +66,6 @@ Package: u-boot-radxa-cm3-io
 Architecture: all
 Depends: u-boot-rk2601 (= ${binary:Version}),
          ${misc:Depends},
-Provides: u-boot-radxa-cm3-io (= 2017.09-63-fffffff)
-Conflicts: u-boot-radxa-cm3-io (<= 2017.09-62-12b7493)
-Replaces: u-boot-radxa-cm3-io (<= 2017.09-62-12b7493)
 Section: admin
 Priority: optional
 Description: Radxa U-Boot meta-package for Radxa CM3
@@ -87,9 +75,6 @@ Package: u-boot-radxa-cm3i-io
 Architecture: all
 Depends: u-boot-rk2601 (= ${binary:Version}),
          ${misc:Depends},
-Provides: u-boot-radxa-cm3i-io (= 2017.09-63-fffffff)
-Conflicts: u-boot-radxa-cm3i-io (<= 2017.09-62-12b7493)
-Replaces: u-boot-radxa-cm3i-io (<= 2017.09-62-12b7493)
 Section: admin
 Priority: optional
 Description: Radxa U-Boot meta-package for Radxa CM3I
@@ -99,9 +84,6 @@ Package: u-boot-radxa-rk3576
 Architecture: all
 Depends: u-boot-rk2601 (= ${binary:Version}),
          ${misc:Depends},
-Provides: u-boot-radxa-rk3576 (= 2017.09-63-fffffff)
-Conflicts: u-boot-radxa-rk3576 (<= 2017.09-62-12b7493)
-Replaces: u-boot-radxa-rk3576 (<= 2017.09-62-12b7493)
 Section: admin
 Priority: optional
 Description: Radxa U-Boot meta-package for Radxa RK3576 products
@@ -111,9 +93,6 @@ Package: u-boot-radxa-rk3576-spi
 Architecture: all
 Depends: u-boot-rk2601 (= ${binary:Version}),
          ${misc:Depends},
-Provides: u-boot-radxa-rk3576-spi (= 2017.09-63-fffffff)
-Conflicts: u-boot-radxa-rk3576-spi (<= 2017.09-62-12b7493)
-Replaces: u-boot-radxa-rk3576-spi (<= 2017.09-62-12b7493)
 Section: admin
 Priority: optional
 Description: Radxa U-Boot meta-package for Radxa RK3576 SPI products
@@ -123,9 +102,6 @@ Package: u-boot-rock-3a
 Architecture: all
 Depends: u-boot-rk2601 (= ${binary:Version}),
          ${misc:Depends},
-Provides: u-boot-rock-3a (= 2017.09-63-fffffff)
-Conflicts: u-boot-rock-3a (<= 2017.09-62-12b7493)
-Replaces: u-boot-rock-3a (<= 2017.09-62-12b7493)
 Section: admin
 Priority: optional
 Description: Radxa U-Boot meta-package for ROCK 3A
@@ -135,9 +111,6 @@ Package: u-boot-rock-3b
 Architecture: all
 Depends: u-boot-rk2601 (= ${binary:Version}),
          ${misc:Depends},
-Provides: u-boot-rock-3b (= 2017.09-63-fffffff)
-Conflicts: u-boot-rock-3b (<= 2017.09-62-12b7493)
-Replaces: u-boot-rock-3b (<= 2017.09-62-12b7493)
 Section: admin
 Priority: optional
 Description: Radxa U-Boot meta-package for ROCK 3B
@@ -147,9 +120,6 @@ Package: u-boot-rock-3c
 Architecture: all
 Depends: u-boot-rk2601 (= ${binary:Version}),
          ${misc:Depends},
-Provides: u-boot-rock-3c (= 2017.09-63-fffffff)
-Conflicts: u-boot-rock-3c (<= 2017.09-62-12b7493)
-Replaces: u-boot-rock-3c (<= 2017.09-62-12b7493)
 Section: admin
 Priority: optional
 Description: Radxa U-Boot meta-package for ROCK 3C
@@ -159,9 +129,6 @@ Package: u-boot-rock-5b-plus
 Architecture: all
 Depends: u-boot-rk2601 (= ${binary:Version}),
          ${misc:Depends},
-Provides: u-boot-rock-5b-plus (= 2017.09-63-fffffff)
-Conflicts: u-boot-rock-5b-plus (<= 2017.09-62-12b7493)
-Replaces: u-boot-rock-5b-plus (<= 2017.09-62-12b7493)
 Section: admin
 Priority: optional
 Description: Radxa U-Boot meta-package for ROCK 5B+
@@ -171,9 +138,6 @@ Package: u-boot-rock-5c
 Architecture: all
 Depends: u-boot-rk2601 (= ${binary:Version}),
          ${misc:Depends},
-Provides: u-boot-rock-5c (= 2017.09-63-fffffff)
-Conflicts: u-boot-rock-5c (<= 2017.09-62-12b7493)
-Replaces: u-boot-rock-5c (<= 2017.09-62-12b7493)
 Section: admin
 Priority: optional
 Description: Radxa U-Boot meta-package for ROCK 5C
@@ -183,9 +147,6 @@ Package: u-boot-rock-5c-spi
 Architecture: all
 Depends: u-boot-rk2601 (= ${binary:Version}),
          ${misc:Depends},
-Provides: u-boot-rock-5c-spi (= 2017.09-63-fffffff)
-Conflicts: u-boot-rock-5c-spi (<= 2017.09-62-12b7493)
-Replaces: u-boot-rock-5c-spi (<= 2017.09-62-12b7493)
 Section: admin
 Priority: optional
 Description: Radxa U-Boot meta-package for ROCK 5C SPI
