@@ -1,3 +1,13 @@
+u-boot-rk2601 (2017.09-68) unstable; urgency=medium
+
+  [ Xinming Chen ]
+  * feat: add Radxa cm3
+
+  [ ZHANG Yuntian ]
+  * fix: remove conflict on selfpackage
+
+ -- "Radxa Computer Co., Ltd" <dev@radxa.com>  Thu, 07 May 2026 08:56:57 +0000
+
 u-boot-rk2601 (2017.09-67) unstable; urgency=medium
 
   [ Xinming Chen ]
