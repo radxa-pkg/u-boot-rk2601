@@ -121,12 +121,16 @@ maskrom_update_spinor() {
 
 maskrom_autoupdate_bootloader() {
     maskrom || true
+    echo "Wait for loader to boot..."
+    sleep 10
     maskrom_update_bootloader
     maskrom_reset
 }
 
 maskrom_autoupdate_spinor() {
     maskrom_spinor || true
+    echo "Wait for loader to boot..."
+    sleep 10
     maskrom_update_spinor
     maskrom_reset
 }
