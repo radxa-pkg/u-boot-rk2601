@@ -173,7 +173,7 @@ rock-3c_defconfig: clean_config
 
 .PHONY: rock-3c_build
 rock-3c_build: rock-3c_defconfig
-	$(call build_uboot,rk3568)
+	$(call build_uboot,rk3566)
 
 .PHONY: rock-3c
 rock-3c: rock-3c_build
