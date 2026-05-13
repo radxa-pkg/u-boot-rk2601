@@ -1,3 +1,17 @@
+u-boot-rk2601 (2017.09-69) unstable; urgency=medium
+
+  [ ZHANG Yuntian ]
+  * fix: wait for loader to boot before flashing
+
+  [ Xinming Chen ]
+  * fix: modify rock-3c correspond soc
+  * update: rkbin: update submodule to f3e6dd6
+
+  [ Zhaoming Luo ]
+  * feat: add cm3j-rpi-cm4-io
+
+ -- "Radxa Computer Co., Ltd" <dev@radxa.com>  Wed, 13 May 2026 10:45:25 +0000
+
 u-boot-rk2601 (2017.09-68) unstable; urgency=medium
 
   [ Xinming Chen ]
