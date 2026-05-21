@@ -71,6 +71,15 @@ Priority: optional
 Description: Radxa U-Boot meta-package for Radxa CM3
  This package provides the prebuilt U-Boot for Radxa CM3.
 
+Package: u-boot-radxa-cm3-rpi-cm4-io
+Architecture: all
+Depends: u-boot-rk2601 (= ${binary:Version}),
+         ${misc:Depends},
+Section: admin
+Priority: optional
+Description: Radxa U-Boot meta-package for Radxa CM3 RPI CM4 IO
+ This package provides the prebuilt U-Boot for Radxa CM3 RPI CM4 IO.
+
 Package: u-boot-radxa-cm3i-io
 Architecture: all
 Depends: u-boot-rk2601 (= ${binary:Version}),
