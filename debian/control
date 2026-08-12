@@ -116,6 +116,15 @@ Priority: optional
 Description: Radxa U-Boot meta-package for Radxa RK3576 SPI products
  This package provides the prebuilt U-Boot for Radxa RK3576 SPI products.
 
+Package: u-boot-radxa-rcore-rk3308-io
+Architecture: all
+Depends: u-boot-rk2601 (= ${binary:Version}),
+         ${misc:Depends},
+Section: admin
+Priority: optional
+Description: Radxa U-Boot meta-package for Radxa rCore-RK3308 IO
+ This package provides the prebuilt U-Boot for Radxa rCore-RK3308 IO.
+
 Package: u-boot-rock-3a
 Architecture: all
 Depends: u-boot-rk2601 (= ${binary:Version}),

@@ -8,6 +8,7 @@ UBOOT_PRODUCTS := \
 	radxa-cm3j-rpi-cm4-io \
 	radxa-rk3576 \
 	radxa-rk3576-spi \
+	radxa-rcore-rk3308-io \
 	rock-3a \
 	rock-3b \
 	rock-3c \
@@ -169,6 +170,18 @@ radxa-rk3576-spi_build: radxa-rk3576-spi_defconfig
 
 .PHONY: radxa-rk3576-spi
 radxa-rk3576-spi: radxa-rk3576-spi_build
+	$(call install_uboot)
+
+.PHONY: radxa-rcore-rk3308-io_defconfig
+radxa-rcore-rk3308-io_defconfig: clean_config
+	$(UMAKE) radxa-rcore-rk3308-io_defconfig
+
+.PHONY: radxa-rcore-rk3308-io_build
+radxa-rcore-rk3308-io_build: radxa-rcore-rk3308-io_defconfig
+	$(call build_uboot,rk3308)
+
+.PHONY: radxa-rcore-rk3308-io
+radxa-rcore-rk3308-io: radxa-rcore-rk3308-io_build
 	$(call install_uboot)
 
 .PHONY: rock-3a_defconfig
