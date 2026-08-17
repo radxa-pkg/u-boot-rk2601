@@ -1,3 +1,14 @@
+u-boot-rk2601 (2017.09-73) unstable; urgency=medium
+
+  [ Xinming Chen ]
+  * update: uboot: update submodule to ad2469f
+  * feat: add radxa-rcore-rk3308-io
+
+  [ github-actions[bot] ]
+  * chore: update submodules
+
+ -- "Radxa Computer Co., Ltd" <dev@radxa.com>  Mon, 17 Aug 2026 08:26:55 +0000
+
 u-boot-rk2601 (2017.09-72) unstable; urgency=medium
 
   [ Xinming Chen ]
