@@ -1,24 +1,3 @@
-UBOOT_PRODUCTS := \
-	radxa-e54c \
-	radxa-e54c-spi \
-	radxa-rk3528 \
-	radxa-cm3-io \
-	radxa-cm3-rpi-cm4-io \
-	radxa-cm3i-io \
-	radxa-cm3j-rpi-cm4-io \
-	radxa-rk3576 \
-	radxa-rk3576-spi \
-	radxa-rcore-rk3308-io \
-	rock-3a \
-	rock-3b \
-	rock-3c \
-	rock-5b-plus \
-	rock-5c \
-	rock-5c-spi \
-	rock-pi-s \
-	rock-s0 \
-	# End of UBOOT_PRODUCTS
-
 PACKING_VARIANTS := "" "_SPINOR"
 
 #
@@ -60,222 +39,52 @@ define install_uboot
 	cp setup/u-boot_setup-rockchip.ps1 out/$@/setup.ps1
 endef
 
+# Define standard U-Boot targets
+# $1: product ID
+# $2: product SoC
+# $3: product defconfig
+define uboot_targets
+
+UBOOT_PRODUCTS += $(1)
+
+.PHONY: $(1)_defconfig
+$(1)_defconfig: clean_config
+	$$(UMAKE) $(3)
+
+.PHONY: $(1)_build
+$(1)_build: $(1)_defconfig
+	$$(call build_uboot,$(2))
+
+.PHONY: $(1)
+$(1): $(1)_build
+	$$(call install_uboot)
+
+endef
+
 #
 # Device build targets
 #
 
-.PHONY: radxa-e54c_defconfig
-radxa-e54c_defconfig: clean_config
-	$(UMAKE) radxa-e54c-rk3588s_defconfig
+$(eval $(call uboot_targets,radxa-rcore-rk3308-io,rk3308,radxa-rcore-rk3308-io_defconfig))
+$(eval $(call uboot_targets,rock-pi-s,rk3308,rock-pi-s-rk3308_defconfig))
+$(eval $(call uboot_targets,rock-s0,rk3308,rock-s0-rk3308_defconfig))
 
-.PHONY: radxa-e54c_build
-radxa-e54c_build: radxa-e54c_defconfig
-	$(call build_uboot,rk3588)
+$(eval $(call uboot_targets,radxa-rk3528,rk3528,rock-2-rk3528_defconfig))
 
-.PHONY: radxa-e54c
-radxa-e54c: radxa-e54c_build
-	$(call install_uboot)
+$(eval $(call uboot_targets,radxa-cm3-io,rk3566,radxa-cm3-io-rk3566_defconfig))
+$(eval $(call uboot_targets,radxa-cm3-rpi-cm4-io,rk3566,radxa-cm3-rpi-cm4-io-rk3566_defconfig))
+$(eval $(call uboot_targets,rock-3c,rk3566,rock-3c-rk3566_defconfig))
 
-.PHONY: radxa-e54c-spi_defconfig
-radxa-e54c-spi_defconfig: clean_config
-	$(UMAKE) radxa-e54c-spi-rk3588s_defconfig
+$(eval $(call uboot_targets,radxa-cm3i-io,rk3568,radxa-cm3i-io-rk3568_defconfig))
+$(eval $(call uboot_targets,radxa-cm3j-rpi-cm4-io,rk3568,radxa-cm3j-rpi-cm4-io-rk3568_defconfig))
+$(eval $(call uboot_targets,rock-3a,rk3568,rock-3a-rk3568_defconfig))
+$(eval $(call uboot_targets,rock-3b,rk3568,rock-3b-rk3568_defconfig))
 
-.PHONY: radxa-e54c-spi_build
-radxa-e54c-spi_build: radxa-e54c-spi_defconfig
-	$(call build_uboot,rk3588)
+$(eval $(call uboot_targets,radxa-rk3576,rk3576,rock-4d-rk3576_defconfig))
+$(eval $(call uboot_targets,radxa-rk3576-spi,rk3576,rock-4d-spi-rk3576_defconfig))
 
-.PHONY: radxa-e54c-spi
-radxa-e54c-spi: radxa-e54c-spi_build
-	$(call install_uboot)
-
-.PHONY: radxa-rk3528_defconfig
-radxa-rk3528_defconfig: clean_config
-	$(UMAKE) rock-2-rk3528_defconfig
-
-.PHONY: radxa-rk3528_build
-radxa-rk3528_build: radxa-rk3528_defconfig
-	$(call build_uboot,rk3528)
-
-.PHONY: radxa-rk3528
-radxa-rk3528: radxa-rk3528_build
-	$(call install_uboot)
-
-.PHONY: radxa-cm3-io_defconfig
-radxa-cm3-io_defconfig: clean_config
-	$(UMAKE) radxa-cm3-io-rk3566_defconfig
-
-.PHONY: radxa-cm3-io_build
-radxa-cm3-io_build: radxa-cm3-io_defconfig
-	$(call build_uboot,rk3566)
-
-.PHONY: radxa-cm3-io
-radxa-cm3-io: radxa-cm3-io_build
-	$(call install_uboot)
-
-.PHONY: radxa-cm3-rpi-cm4-io_defconfig
-radxa-cm3-rpi-cm4-io_defconfig: clean_config
-	$(UMAKE) radxa-cm3-rpi-cm4-io-rk3566_defconfig
-
-.PHONY: radxa-cm3-rpi-cm4-io_build
-radxa-cm3-rpi-cm4-io_build: radxa-cm3-rpi-cm4-io_defconfig
-	$(call build_uboot,rk3566)
-
-.PHONY: radxa-cm3-rpi-cm4-io
-radxa-cm3-rpi-cm4-io: radxa-cm3-rpi-cm4-io_build
-	$(call install_uboot)
-
-.PHONY: radxa-cm3i-io_defconfig
-radxa-cm3i-io_defconfig: clean_config
-	$(UMAKE) radxa-cm3i-io-rk3568_defconfig
-
-.PHONY: radxa-cm3i-io_build
-radxa-cm3i-io_build: radxa-cm3i-io_defconfig
-	$(call build_uboot,rk3568)
-
-.PHONY: radxa-cm3i-io
-radxa-cm3i-io: radxa-cm3i-io_build
-	$(call install_uboot)
-
-.PHONY: radxa-cm3j-rpi-cm4-io_defconfig
-radxa-cm3j-rpi-cm4-io_defconfig: clean_config
-	$(UMAKE) radxa-cm3j-rpi-cm4-io-rk3568_defconfig
-
-.PHONY: radxa-cm3j-rpi-cm4-io_build
-radxa-cm3j-rpi-cm4-io_build: radxa-cm3j-rpi-cm4-io_defconfig
-	$(call build_uboot,rk3568)
-
-.PHONY: radxa-cm3j-rpi-cm4-io
-radxa-cm3j-rpi-cm4-io: radxa-cm3j-rpi-cm4-io_build
-	$(call install_uboot)
-
-.PHONY: radxa-rk3576_defconfig
-radxa-rk3576_defconfig: clean_config
-	$(UMAKE) rock-4d-rk3576_defconfig
-
-.PHONY: radxa-rk3576_build
-radxa-rk3576_build: radxa-rk3576_defconfig
-	$(call build_uboot,rk3576)
-
-.PHONY: radxa-rk3576
-radxa-rk3576: radxa-rk3576_build
-	$(call install_uboot)
-
-.PHONY: radxa-rk3576-spi_defconfig
-radxa-rk3576-spi_defconfig: clean_config
-	$(UMAKE) rock-4d-spi-rk3576_defconfig
-
-.PHONY: radxa-rk3576-spi_build
-radxa-rk3576-spi_build: radxa-rk3576-spi_defconfig
-	$(call build_uboot,rk3576)
-
-.PHONY: radxa-rk3576-spi
-radxa-rk3576-spi: radxa-rk3576-spi_build
-	$(call install_uboot)
-
-.PHONY: radxa-rcore-rk3308-io_defconfig
-radxa-rcore-rk3308-io_defconfig: clean_config
-	$(UMAKE) radxa-rcore-rk3308-io_defconfig
-
-.PHONY: radxa-rcore-rk3308-io_build
-radxa-rcore-rk3308-io_build: radxa-rcore-rk3308-io_defconfig
-	$(call build_uboot,rk3308)
-
-.PHONY: radxa-rcore-rk3308-io
-radxa-rcore-rk3308-io: radxa-rcore-rk3308-io_build
-	$(call install_uboot)
-
-.PHONY: rock-3a_defconfig
-rock-3a_defconfig: clean_config
-	$(UMAKE) rock-3a-rk3568_defconfig
-
-.PHONY: rock-3a_build
-rock-3a_build: rock-3a_defconfig
-	$(call build_uboot,rk3568)
-
-.PHONY: rock-3a
-rock-3a: rock-3a_build
-	$(call install_uboot)
-
-.PHONY: rock-3b_defconfig
-rock-3b_defconfig: clean_config
-	$(UMAKE) rock-3b-rk3568_defconfig
-
-.PHONY: rock-3b_build
-rock-3b_build: rock-3b_defconfig
-	$(call build_uboot,rk3568)
-
-.PHONY: rock-3b
-rock-3b: rock-3b_build
-	$(call install_uboot)
-
-.PHONY: rock-3c_defconfig
-rock-3c_defconfig: clean_config
-	$(UMAKE) rock-3c-rk3566_defconfig
-
-.PHONY: rock-3c_build
-rock-3c_build: rock-3c_defconfig
-	$(call build_uboot,rk3566)
-
-.PHONY: rock-3c
-rock-3c: rock-3c_build
-	$(call install_uboot)
-
-.PHONY: rock-5b-plus_defconfig
-rock-5b-plus_defconfig: clean_config
-	$(UMAKE) rock-5b-plus-rk3588_defconfig
-
-.PHONY: rock-5b-plus_build
-rock-5b-plus_build: rock-5b-plus_defconfig
-	$(call build_uboot,rk3588)
-
-.PHONY: rock-5b-plus
-rock-5b-plus: rock-5b-plus_build
-	$(call install_uboot)
-
-.PHONY: rock-5c_defconfig
-rock-5c_defconfig: clean_config
-	$(UMAKE) rock-5c-rk3588s_defconfig
-
-.PHONY: rock-5c_build
-rock-5c_build: rock-5c_defconfig
-	$(call build_uboot,rk3588)
-
-.PHONY: rock-5c
-rock-5c: rock-5c_build
-	$(call install_uboot)
-
-.PHONY: rock-5c-spi_defconfig
-rock-5c-spi_defconfig: clean_config
-	$(UMAKE) rock-5c-spi-rk3588s_defconfig
-
-.PHONY: rock-5c-spi_build
-rock-5c-spi_build: rock-5c_defconfig
-	$(call build_uboot,rk3588)
-
-.PHONY: rock-5c-spi
-rock-5c-spi: rock-5c-spi_build
-	$(call install_uboot)
-
-.PHONY: rock-pi-s_defconfig
-rock-pi-s_defconfig: clean_config
-	$(UMAKE) rock-pi-s-rk3308_defconfig
-
-.PHONY: rock-pi-s_build
-rock-pi-s_build: rock-pi-s_defconfig
-	$(call build_uboot,rk3308)
-
-.PHONY: rock-pi-s
-rock-pi-s: rock-pi-s_build
-	$(call install_uboot)
-
-.PHONY: rock-s0_defconfig
-rock-s0_defconfig: clean_config
-	$(UMAKE) rock-s0-rk3308_defconfig
-
-.PHONY: rock-s0_build
-rock-s0_build: rock-s0_defconfig
-	$(call build_uboot,rk3308)
-
-.PHONY: rock-s0
-rock-s0: rock-s0_build
-	$(call install_uboot)
+$(eval $(call uboot_targets,radxa-e54c,rk3588,radxa-e54c-rk3588s_defconfig))
+$(eval $(call uboot_targets,radxa-e54c-spi,rk3588,radxa-e54c-spi-rk3588s_defconfig))
+$(eval $(call uboot_targets,rock-5b-plus,rk3588,rock-5b-plus-rk3588_defconfig))
+$(eval $(call uboot_targets,rock-5c,rk3588,rock-5c-rk3588s_defconfig))
+$(eval $(call uboot_targets,rock-5c-spi,rk3588,rock-5c-spi-rk3588s_defconfig))
