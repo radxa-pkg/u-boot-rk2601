@@ -143,6 +143,8 @@ maskrom_autoerase_bootloader() {
 
 maskrom_autoerase_spinor() {
     maskrom_spinor || true
+    echo "Wait for loader to boot..."
+    sleep 10
     maskrom_erase_spinor
     maskrom_reset
 }
