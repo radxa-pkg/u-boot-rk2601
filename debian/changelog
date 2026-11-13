@@ -1,3 +1,15 @@
+u-boot-rk2601 (2017.09-74) unstable; urgency=medium
+
+  [ ZHANG Yuntian ]
+  * refactor: simplify device definition
+  * fix: add delay after booting loader
+  * style: shellcheck
+
+  [ github-actions[bot] ]
+  * chore: update submodules
+
+ -- "Radxa Computer (Shenzhen) Co., Ltd." <dev@radxa.com>  Fri, 13 Nov 2026 08:00:28 +0000
+
 u-boot-rk2601 (2017.09-73) unstable; urgency=medium
 
   [ Xinming Chen ]
