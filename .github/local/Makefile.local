@@ -65,26 +65,26 @@ endef
 # Device build targets
 #
 
-$(eval $(call uboot_targets,radxa-rcore-rk3308-io,rk3308,radxa-rcore-rk3308-io_defconfig))
-$(eval $(call uboot_targets,rock-pi-s,rk3308,rock-pi-s-rk3308_defconfig))
-$(eval $(call uboot_targets,rock-s0,rk3308,rock-s0-rk3308_defconfig))
+# $(eval $(call uboot_targets,radxa-rcore-rk3308-io,rk3308,radxa-rcore-rk3308-io_defconfig))
+# $(eval $(call uboot_targets,rock-pi-s,rk3308,rock-pi-s-rk3308_defconfig))
+# $(eval $(call uboot_targets,rock-s0,rk3308,rock-s0-rk3308_defconfig))
 
-$(eval $(call uboot_targets,radxa-rk3528,rk3528,rock-2-rk3528_defconfig))
+# $(eval $(call uboot_targets,radxa-rk3528,rk3528,rock-2-rk3528_defconfig))
 
-$(eval $(call uboot_targets,radxa-cm3-io,rk3566,radxa-cm3-io-rk3566_defconfig))
-$(eval $(call uboot_targets,radxa-cm3-rpi-cm4-io,rk3566,radxa-cm3-rpi-cm4-io-rk3566_defconfig))
-$(eval $(call uboot_targets,rock-3c,rk3566,rock-3c-rk3566_defconfig))
+# $(eval $(call uboot_targets,radxa-cm3-io,rk3566,radxa-cm3-io-rk3566_defconfig))
+# $(eval $(call uboot_targets,radxa-cm3-rpi-cm4-io,rk3566,radxa-cm3-rpi-cm4-io-rk3566_defconfig))
+# $(eval $(call uboot_targets,rock-3c,rk3566,rock-3c-rk3566_defconfig))
 
-$(eval $(call uboot_targets,radxa-cm3i-io,rk3568,radxa-cm3i-io-rk3568_defconfig))
-$(eval $(call uboot_targets,radxa-cm3j-rpi-cm4-io,rk3568,radxa-cm3j-rpi-cm4-io-rk3568_defconfig))
-$(eval $(call uboot_targets,rock-3a,rk3568,rock-3a-rk3568_defconfig))
-$(eval $(call uboot_targets,rock-3b,rk3568,rock-3b-rk3568_defconfig))
+# $(eval $(call uboot_targets,radxa-cm3i-io,rk3568,radxa-cm3i-io-rk3568_defconfig))
+# $(eval $(call uboot_targets,radxa-cm3j-rpi-cm4-io,rk3568,radxa-cm3j-rpi-cm4-io-rk3568_defconfig))
+# $(eval $(call uboot_targets,rock-3a,rk3568,rock-3a-rk3568_defconfig))
+# $(eval $(call uboot_targets,rock-3b,rk3568,rock-3b-rk3568_defconfig))
 
-$(eval $(call uboot_targets,radxa-rk3576,rk3576,rock-4d-rk3576_defconfig))
+# $(eval $(call uboot_targets,radxa-rk3576,rk3576,rock-4d-rk3576_defconfig))
 $(eval $(call uboot_targets,radxa-rk3576-spi,rk3576,rock-4d-spi-rk3576_defconfig))
 
-$(eval $(call uboot_targets,radxa-e54c,rk3588,radxa-e54c-rk3588s_defconfig))
-$(eval $(call uboot_targets,radxa-e54c-spi,rk3588,radxa-e54c-spi-rk3588s_defconfig))
-$(eval $(call uboot_targets,rock-5b-plus,rk3588,rock-5b-plus-rk3588_defconfig))
-$(eval $(call uboot_targets,rock-5c,rk3588,rock-5c-rk3588s_defconfig))
-$(eval $(call uboot_targets,rock-5c-spi,rk3588,rock-5c-spi-rk3588s_defconfig))
+# $(eval $(call uboot_targets,radxa-e54c,rk3588,radxa-e54c-rk3588s_defconfig))
+# $(eval $(call uboot_targets,radxa-e54c-spi,rk3588,radxa-e54c-spi-rk3588s_defconfig))
+# $(eval $(call uboot_targets,rock-5b-plus,rk3588,rock-5b-plus-rk3588_defconfig))
+# $(eval $(call uboot_targets,rock-5c,rk3588,rock-5c-rk3588s_defconfig))
+# $(eval $(call uboot_targets,rock-5c-spi,rk3588,rock-5c-spi-rk3588s_defconfig))
