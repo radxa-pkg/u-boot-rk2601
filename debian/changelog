@@ -1,3 +1,10 @@
+u-boot-rk2601 (2017.09-75) unstable; urgency=medium
+
+  [ ZHANG Yuntian ]
+  * fix: remove development changes
+
+ -- "Radxa Computer (Shenzhen) Co., Ltd." <dev@radxa.com>  Mon, 16 Nov 2026 06:05:37 +0000
+
 u-boot-rk2601 (2017.09-74) unstable; urgency=medium
 
   [ ZHANG Yuntian ]
