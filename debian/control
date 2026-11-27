@@ -152,6 +152,42 @@ Priority: optional
 Description: Radxa U-Boot meta-package for ROCK 3C
  This package provides the prebuilt U-Boot for ROCK 3C.
 
+Package: u-boot-rock-pi-4a
+Architecture: all
+Depends: u-boot-rk2601 (= ${binary:Version}),
+         ${misc:Depends},
+Section: admin
+Priority: optional
+Description: Radxa U-Boot meta-package for ROCK Pi 4A
+ This package provides the prebuilt U-Boot for ROCK Pi 4A.
+
+Package: u-boot-rock-pi-4a-plus
+Architecture: all
+Depends: u-boot-rk2601 (= ${binary:Version}),
+         ${misc:Depends},
+Section: admin
+Priority: optional
+Description: Radxa U-Boot meta-package for ROCK Pi 4A+
+ This package provides the prebuilt U-Boot for ROCK Pi 4A+.
+
+Package: u-boot-rock-pi-4b
+Architecture: all
+Depends: u-boot-rk2601 (= ${binary:Version}),
+         ${misc:Depends},
+Section: admin
+Priority: optional
+Description: Radxa U-Boot meta-package for ROCK Pi 4B
+ This package provides the prebuilt U-Boot for ROCK Pi 4B.
+
+Package: u-boot-rock-pi-4b-plus
+Architecture: all
+Depends: u-boot-rk2601 (= ${binary:Version}),
+         ${misc:Depends},
+Section: admin
+Priority: optional
+Description: Radxa U-Boot meta-package for ROCK Pi 4B+
+ This package provides the prebuilt U-Boot for ROCK Pi 4B+.
+
 Package: u-boot-rock-5b-plus
 Architecture: all
 Depends: u-boot-rk2601 (= ${binary:Version}),

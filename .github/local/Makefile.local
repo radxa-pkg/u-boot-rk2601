@@ -80,6 +80,11 @@ $(eval $(call uboot_targets,radxa-cm3j-rpi-cm4-io,rk3568,radxa-cm3j-rpi-cm4-io-r
 $(eval $(call uboot_targets,rock-3a,rk3568,rock-3a-rk3568_defconfig))
 $(eval $(call uboot_targets,rock-3b,rk3568,rock-3b-rk3568_defconfig))
 
+$(eval $(call uboot_targets,rock-pi-4a,rk3399,rock-pi-4a-rk3399_defconfig))
+$(eval $(call uboot_targets,rock-pi-4a-plus,rk3399,rock-pi-4a-plus-rk3399_defconfig))
+$(eval $(call uboot_targets,rock-pi-4b,rk3399,rock-pi-4b-rk3399_defconfig))
+$(eval $(call uboot_targets,rock-pi-4b-plus,rk3399,rock-pi-4b-plus-rk3399_defconfig))
+
 $(eval $(call uboot_targets,radxa-rk3576,rk3576,rock-4d-rk3576_defconfig))
 $(eval $(call uboot_targets,radxa-rk3576-spi,rk3576,rock-4d-spi-rk3576_defconfig))
 
